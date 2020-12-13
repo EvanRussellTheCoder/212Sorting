@@ -1,0 +1,68 @@
+//we made this code with help from a Udemy course by Holczer Balazs named "Sorting Algorithms in C++" as a reference guide
+#include <iostream>
+#include <string>
+
+template<class T>
+void swap(T& x, T& y){
+  T temp = x;
+  x = y;
+  y = temp;
+}
+
+template<class T>
+void print(T data, int n){
+  for(int i = 0; i < n; i++){
+    std::cout << data[i] << " ";
+  }
+}
+
+template<class T>
+int partition(T data[], int low, int high){
+  //we could generate a random item for the pivot, but we're using a middle item instead
+  int pivdex = (low+high)/2;
+  //make the pivot be the last item in the array
+  swap(data[pivdex], data[high]);
+
+  //loop decides what are the items that will be on the left side of the pivot or the right side of the pivot
+  int i = low;
+
+  for(int j = low; j < high; j++){
+    if (data[j] <= data[high]){
+      swap(data[i], data[j]);
+      i++;
+    }
+  }
+  //i tracks threshold item -> separates items that are smaller/greater than the pivot
+  swap(data[i], data[high]);
+  //return index of pivot
+  return i;
+}
+
+template<class T>
+void quicksort(T data[], int low, int high){
+  //base case
+  if (low >= high){
+    return;
+  }
+  //find a pivot item, partition array according to what the pivot is
+  int pivdex = partition(data, low, high);
+   //call this sort method recursively on left array
+  quicksort(data, low, pivdex - 1);
+   //call this sort method recursively on right array
+  quicksort(data, pivdex + 1, high);
+  //we use pivdex - 1 and pivdex + 1 because we aren't measuring the pivot at all
+}
+
+template<class T>
+void sort(T data[], int n){
+  quicksort(data, 0, n - 1);
+}
+
+int main(){
+  int data[] = {4, 7, 2, 1, 5, 3, 6};
+
+  int n = sizeof(data)/sizeof(data[0]);
+
+  sort(data, n);
+  print(data, n);
+}
