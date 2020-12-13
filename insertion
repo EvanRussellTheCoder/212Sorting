@@ -1,0 +1,42 @@
+//we made this code with help from a Udemy course by Holczer Balazs named "Sorting Algorithms in C++" as a reference guide
+#include <iostream>
+#include <string> //in case we want to use an array of strings for an example
+
+template<class T>
+void swap(T& x, T& y){
+  T temp = x;
+  x = y;
+  y = temp;
+}
+
+template<class T>
+void insertionSort(T data[], int n){
+  //iterate through array sequentially
+  for(int i = 1; i < n; i++){
+    int j = i;
+    //while previous item > given one, we keep swapping
+    while((j > 0) && (data[j - 1] > data[j])){
+      swap(data[j], data[j - 1]);
+      j--;
+      //that's why there's lots of shifts in insertion sort
+    }
+  }
+}
+//Insertion sort starts at array[1] because it starts measuring array[1], array[1 - 1]
+
+template<class T>
+void print(T data, int n){
+  for(int i = 0; i < n; i++){
+    std::cout << data[i] << std::endl;
+  }
+}
+
+int main(){
+  int data[] = {4, 7, 2, 1, 5, 3, 6};
+  //char data[] = {'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'};
+
+  int n = sizeof(data)/sizeof(data[0]);
+
+  insertionSort(data, n);
+  print(data, n);
+}
