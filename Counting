@@ -27,8 +27,8 @@ void countingSort(int* data, int n){
         counterArr[data[i]]--;
     }
     //iterate all items in output array, copy the values into the data array
-    for(int i = 1; i < n; i++){
-        data[i] += outputArr[i];
+    for(int i = 0; i < n; i++){
+        data[i] = outputArr[i];
     }
 }
 
