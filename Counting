@@ -29,12 +29,13 @@ void countingSort(int* data, int n){
     //iterate all items in output array, copy the values into the data array
     for(int i = 0; i < n; i++){
         data[i] = outputArr[i];
+        std::cout << data[i] << " ";
     }
+    std::cout << "\n";
 }
 
-int main()
-{
-    int data[] = {7, 3, 5, 2, 4, 8, 9, 1, 6};
+int main(){
+    int data[] = {1, 4, 1, 2, 7, 5, 2};
     
     int n = sizeof(data)/sizeof(data[0]);
 
